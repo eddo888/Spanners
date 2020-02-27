@@ -8,7 +8,7 @@ pwd = path.abspath(path.dirname(__file__))
 with open(path.join(pwd, 'README.md'), 'rb') as input:
     long_description = input.read()
 
-version='1.0'
+version='1.1'
 	
 setup(
 	name='Spanners',

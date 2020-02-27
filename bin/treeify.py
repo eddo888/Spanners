@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # PYTHON_ARGCOMPLETE_OK
 
@@ -8,7 +8,7 @@ from collections import OrderedDict as OD
 from collections import deque
 from asciitree import LeftAligned
 from asciitree.drawing import BoxStyle, BOX_LIGHT, BOX_BLANK
-from StringIO import StringIO
+from io import StringIO
 
 from Baubles.Colours import Colours
 from Perdy.pretty import prettyPrintLn, Style
@@ -33,7 +33,7 @@ def ascii():
 	return _ascii
 
 
-_oneof = dict(map(lambda x: (x, 'input as %s' % x), ['xml', 'json', 'yaml']))
+_oneof = dict([(x, 'input as %s' % x) for x in ['xml', 'json', 'yaml']])
 _format = 'json'
 
 
@@ -59,7 +59,7 @@ def doTest():
 
 args.parse()
 
-fundamentals = [str, unicode, int, float, bool]
+fundamentals = [str, str, int, float, bool]
 colours = Colours(colour=colour())
 
 
@@ -74,7 +74,7 @@ def treeFix(node):
 			new[''.join([colours.Teal, str(n), colours.Off])] = treeFix(node[n])
 		return new
 	if type(node) in [dict, OD]:
-		for key in node.keys():
+		for key in list(node.keys()):
 			tipe = type(node[key])
 			value = treeFix(node[key])
 			del node[key]
@@ -145,21 +145,21 @@ def test():
 			}
 		}
 	}
-	print h
+	print(h)
 	prettyPrintLn(j)
-	print h
+	print(h)
 
 	#_ascii=True
 	_colour = True
 	process(StringIO(json.dumps(j)), sys.stdout)
-	print h
+	print(h)
 
 	x = xmltodict.unparse(j)
 	doParse(StringIO(str(x)), sys.stdout, colour=True)
-	print h
+	print(h)
 	_format = 'xml'
 	process(StringIO(str(x)), sys.stdout)
-	print h
+	print(h)
 
 	sio = StringIO()
 	prettyPrintLn(j, output=sio, style=Style.YAML, colour=False)
@@ -170,7 +170,7 @@ def test():
 	y = y.replace('@attr', '"@attr"')
 	#print y
 	prettyPrintLn(j, output=sys.stdout, style=Style.YAML, colour=True)
-	print h
+	print(h)
 	_format = 'yaml'
 	process(StringIO(y), sys.stdout)
 
@@ -182,4 +182,5 @@ if __name__ == '__main__':
 		test()
 	else:
 		main()
+
 

@@ -5,7 +5,7 @@ from os import path
 from setuptools import setup
 
 pwd = path.abspath(path.dirname(__file__))
-with codecs.open(path.join(pwd, 'README.md'), 'br', encoding='utf8') as input:
+with open(path.join(pwd, 'README.md'), 'rb') as input:
     long_description = input.read()
 
 version='1.0'

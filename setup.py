@@ -24,6 +24,7 @@ setup(
 		'Spanners',
 	],
 	install_requires=[
+		#'credstash',
 		'asciitree',
 		'bs4',
 		'arrow',

@@ -31,4 +31,8 @@ setup(
 		'Perdy',
 		'Argumental',
 	],
+	scripts=[
+		'bin/squirrel.py',
+		'bin/treeify.py',
+	],
 )

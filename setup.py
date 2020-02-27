@@ -24,6 +24,8 @@ setup(
 		'Spanners',
 	],
 	install_requires=[
+		'asciitree',
+		'bs4',
 		'arrow',
 		'Baubles',
 		'Perdy',

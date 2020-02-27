@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import codecs
 from os import path
@@ -25,6 +25,7 @@ setup(
 	],
 	install_requires=[
 		'asciitree',
+		'bs4',
 		'arrow',
 		'Baubles',
 		'Perdy',

@@ -17,7 +17,7 @@ class SquirrelCommand(Squirrel):
 		return False
 
 	def __init__(self):
-		args.super(SquirrelCommand, self).__init__()
+		super().__init__()
 		return
 
 	@args.operation
@@ -26,8 +26,7 @@ class SquirrelCommand(Squirrel):
         get a KMS key
 
         '''
-		return args.super(SquirrelCommand,
-																				self).get(name)  #.rstrip('\r').rstrip('\n')
+		return super().get(name)  #.rstrip('\r').rstrip('\n')
 
 	@args.operation
 	def put(self, name, value):
@@ -35,14 +34,14 @@ class SquirrelCommand(Squirrel):
         put a KMS name,value key
 
         '''
-		return args.super(SquirrelCommand, self).put(name, value)
+		return super().put(name, value)
 
 	@args.operation
 	def delete(self, name):
 		'''
         delete a KMS name
         '''
-		return args.super(SquirrelCommand, self).delete(name)
+		return super().delete(name)
 
 	@args.operation
 	def list(self):
@@ -50,16 +49,14 @@ class SquirrelCommand(Squirrel):
         list the KMS names
 
         '''
-		return args.super(SquirrelCommand, self).list()
+		return list(super().list())
 
 
 if __name__ == '__main__':
 	result = args.execute()
 	if result:
-		if type(result) in [str, str]:
-			print(result)
-		elif type(result) == list:
+		if type(result) == list:
 			print('\n'.join(result))
 		else:
-			json.dump(result, sys.stdout, indent=4)
+			print(result)
 

@@ -10,7 +10,7 @@ import os,sys,re,logging,json,googlemaps
 
 from Argumental.Argue import Argue
 from Perdy.pretty import prettyPrint
-from Spanners import Squirrel
+from Spanners.Squirrel import Squirrel
 
 args = Argue()
 squirrel = Squirrel()

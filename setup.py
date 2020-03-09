@@ -8,7 +8,7 @@ pwd = path.abspath(path.dirname(__file__))
 with codecs.open(path.join(pwd, 'README.md'), 'r', encoding='utf8') as input:
     long_description = input.read()
 
-version='1.3'
+version='1.4'
 	
 setup(
 	name='Spanners',
@@ -24,7 +24,8 @@ setup(
 		'Spanners',
 	],
 	install_requires=[
-		#'credstash',
+		'credstash',
+		'googlemaps',
 		'asciitree',
 		'bs4',
 		'arrow',
@@ -35,5 +36,7 @@ setup(
 	scripts=[
 		'bin/squirrel.py',
 		'bin/treeify.py',
+		'Spanners/GoogleMaps.py',
+		'Spanners/Treeify.py',
 	],
 )

@@ -16,7 +16,7 @@ class IdentityCache(object):
 
 
 	#_____________________________________________
-	def __del__(self):
+	def save(self):
 		with open(self.filename, 'w') as output:
 			json.dump(self.cache, output, indent=4, sort_keys=True)
 

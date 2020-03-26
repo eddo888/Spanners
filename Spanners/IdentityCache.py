@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, re, sys, json, uuid, hashlib, codecs, arrow
+import os, re, sys, json, uuid, hashlib, arrow
 
 class IdentityCache(object):
 
@@ -9,7 +9,7 @@ class IdentityCache(object):
 	#_____________________________________________
 	def __init__(self):
 		if os.path.isfile(self.filename):
-			with codecs.open(self.filename, encoding='utf8') as input:
+			with open(self.filename) as input:
 				self.cache = json.load(input)
 		else:
 			self.cache = dict()
@@ -17,7 +17,7 @@ class IdentityCache(object):
 
 	#_____________________________________________
 	def __del__(self):
-		with codecs.open(self.filename,'w', encoding='utf8') as output:
+		with open(self.filename, 'w') as output:
 			json.dump(self.cache, output, indent=4, sort_keys=True)
 
 

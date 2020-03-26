@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, re, sys, requests, codecs, hashlib, shutil, io, urllib3, logging, arrow
+import os, re, sys, requests, hashlib, shutil, io, urllib3, logging, arrow
 
 from urllib.parse import quote_plus, urlparse
 from bs4 import BeautifulSoup as BS

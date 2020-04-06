@@ -8,7 +8,7 @@ from collections import OrderedDict as OD
 from collections import deque
 from asciitree import LeftAligned
 from asciitree.drawing import BoxStyle, BOX_LIGHT, BOX_BLANK
-from io import StringIO
+from io import StringIO, IOBase
 
 from Baubles.Colours import Colours
 from Perdy.pretty import prettyPrintLn, Style
@@ -28,17 +28,17 @@ class Treeify(object):
 	def ascii(self): return False
 	
 	
-	_oneof = OD(map(lambda x: (x, 'input as %s' % x), ['json', 'xml', 'yaml']))
+	_oneof = OD([(x, 'input as %s' % x) for x in ['json', 'xml', 'yaml']])
 	
 	
-	@args.property(oneof=_oneof, short=True, flag=True, default=_oneof.keys()[0])
+	@args.property(oneof=_oneof, short=True, flag=True, default=list(_oneof.keys())[0])
 	def format(self): return
 	
 	
 	def __init__(self, colour=False, ascii=False):
 		if colour: self.colour = True
 		if ascii: self.ascii = True
-		self.fundamentals = [str, unicode, int, float, bool]
+		self.fundamentals = [str, str, int, float, bool]
 		self.collections = [list, dict, OD]
 		self.colours = Colours(colour=self.colour)
 	
@@ -55,7 +55,7 @@ class Treeify(object):
 				new[key] = self.treeFix(node[n])
 			return new
 		if type(node) in [dict, OD]:
-			for key in node.keys():
+			for key in list(node.keys()):
 				tipe = type(node[key])
 				value = self.treeFix(node[key])
 				del node[key]
@@ -76,9 +76,9 @@ class Treeify(object):
 	def process(self, input, output=sys.stdout):
 		if type(input) in self.collections:
 			o = input
-		elif type(input) is file or isinstance(input,StringIO):
+		elif isinstance(input, IOBase) or isinstance(input, StringIO):
 			input = input.read()
-		if type(input) in [str,unicode]:
+		if type(input) in [str]:
 			if self.format == 'xml':
 				o = xmltodict.parse(input)
 			elif self.format == 'yaml':
@@ -136,27 +136,27 @@ class Treeify(object):
 			}
 		}
 		
-		print h
+		print(h)
 		prettyPrintLn(j)
-		print h
+		print(h)
 	
-		f = 'test/treeify.json' 
+		f = '../test/treeify.json' 
 		with open(f,'w') as output:
 			json.dump(j, output)
 		self.bark([f])
-		print h
+		print(h)
 		
 		#self.ascii = True
 		self.colour = True
 		self.process(StringIO(json.dumps(j)), sys.stdout)
-		print h
+		print(h)
 	
 		x = xmltodict.unparse(j)
 		doParse(StringIO(str(x)), sys.stdout, colour=True)
-		print h
+		print(h)
 		self.format = 'xml'
 		self.process(StringIO(str(x)), sys.stdout)
-		print h
+		print(h)
 	
 		sio = StringIO()
 		prettyPrintLn(j, output=sio, style=Style.YAML, colour=False)
@@ -167,7 +167,7 @@ class Treeify(object):
 		y = y.replace('@attr', '"@attr"')
 		#print y
 		prettyPrintLn(j, output=sys.stdout, style=Style.YAML, colour=True)
-		print h
+		print(h)
 		self.format = 'yaml'
 		self.process(StringIO(y), sys.stdout)
 	
@@ -175,5 +175,6 @@ class Treeify(object):
 	
 	
 if __name__ == '__main__': args.execute()
+
 
 

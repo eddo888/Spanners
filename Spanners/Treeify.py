@@ -59,7 +59,7 @@ class Treeify(object):
 				tipe = type(node[key])
 				value = self.treeFix(node[key])
 				del node[key]
-				if key[0] in ['@', '#']:
+				if len(key) and key[0] in ['@', '#']:
 					node[''.join([self.colours.Green, key, self.colours.Off])] = value
 				else:
 					if tipe in self.fundamentals:

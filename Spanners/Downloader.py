@@ -18,7 +18,7 @@ class Downloader(object):
 		self.fresh = fresh
 		logger.debug('cacheDir='+self.cacheDir)
 		
-	def download(self, url, file=None):
+	def download(self, url, file=None, username=None, password=None):
 		'''
 		read from disk before downloading
 		'''
@@ -51,7 +51,9 @@ class Downloader(object):
 
 		if self.fresh or not os.path.isfile(file):
 			logger.info('to cache '+file)
-			response = requests.get(url, verify=True, stream=True)
+			if username and password:
+				auth=(username,password)
+			response = requests.get(url, verify=True, stream=True, auth=auth)
 			if response.status_code != 200:
 				file = '%s=%s'%(file,response.status_code)
 				logger.warning('url=%s, code=%s'%(url, response.status_code))

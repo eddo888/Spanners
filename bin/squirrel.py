@@ -12,9 +12,9 @@ args = Argue()
 
 @args.command(single=True)
 class SquirrelCommand(Squirrel):
+	
 	@args.attribute(short='v', flag=True)
-	def verbose(self):
-		return False
+	def verbose(self): return False
 
 	def __init__(self):
 		super().__init__()
@@ -29,11 +29,13 @@ class SquirrelCommand(Squirrel):
 		return super().get(name)  #.rstrip('\r').rstrip('\n')
 
 	@args.operation
-	def put(self, name, value):
+	@args.parameter(name='replace', short='r', flag=True)
+	def put(self, name, value, replace=False):
 		'''
         put a KMS name,value key
 
         '''
+		if replace: super().delete(name)
 		return super().put(name, value)
 
 	@args.operation

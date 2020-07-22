@@ -53,6 +53,8 @@ class Downloader(object):
 			logger.info('to cache '+file)
 			if username and password:
 				auth=(username,password)
+			else:
+				auth=None
 			response = requests.get(url, verify=True, stream=True, auth=auth)
 			if response.status_code != 200:
 				file = '%s=%s'%(file,response.status_code)

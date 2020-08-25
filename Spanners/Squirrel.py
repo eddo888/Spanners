@@ -23,7 +23,7 @@ class SquirrelBase(object):
     '''
     
     def __init__(self):
-        self.values = dict()
+        pass
 
     def get(self,name):
         raise NotImplementedError()
@@ -53,8 +53,6 @@ try:
             super(KeyChainSquirrel,self).__init__()
 
         def get(self,name):
-            if name in self.values.keys():
-                return self.values[name]
             value = keychain.get_password(
                 table(),
                 name
@@ -62,11 +60,9 @@ try:
             if not value:
                 value = dialogs.text_dialog('%s ?'%name)
                 self.put(name,value)
-            self.values[name] = value
             return value
 
         def put(self,name,value):
-            self.values[name] = value   
             keychain.set_password(
                 table(),
                 name,
@@ -74,8 +70,6 @@ try:
             )   
 
         def delete(self,name):
-            if name in self.values.keys():
-                del self.values[name]
             keychain.delete_password(
                 table(),
                 name
@@ -83,7 +77,7 @@ try:
             return    
 
         def list(self):
-            return self.values.keys()
+            return list()
 
     Squirrel = KeyChainSquirrel
 
@@ -103,15 +97,12 @@ except:
                 super(SecretSquirrel,self).__init__()
     
             def get(self,name):
-                if name in self.values.keys():
-                    return self.values[name]
                 try:
                     value = credstash.getSecret(
                         name,
                         region=region(),
                         table=table()
                     )
-                    self.values[name] = value
                     return value
                 except ItemNotFound:
                     sys.stderr.write('cant find credstash value for key "%s"\n'%name)
@@ -160,10 +151,7 @@ except:
                 return '\n'.join(self.execute('setup'))
     
             def get(self,name):
-                if name in self.values.keys():
-                    return self.values[name]
                 value = '\n'.join(self.execute('get \'%s\''%name))
-                self.values[name] = value
                 return value
     
             def put(self,name,value):

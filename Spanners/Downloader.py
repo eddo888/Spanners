@@ -63,11 +63,16 @@ class Downloader(object):
 				md = hashlib.md5()
 				md.update(quote_plus(parts.query).encode('utf8'))
 				query = '.%s'%md.hexdigest()
+
+			# fake file for dir like path
+			paths = parts.path.split('/')
+			if '.' not in paths[-1]:
+				paths.append('.html')
 				
 			file = '%s/%s%s%s'%(
 				self.cacheDir,
 				parts.netloc,
-				parts.path,
+				'/'.join(paths),
 				query
 			)
 

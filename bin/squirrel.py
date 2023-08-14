@@ -5,6 +5,10 @@
 import os, sys, re, json, xmltodict
 
 from Argumental.Argue import Argue
+
+if os.path.dirname(sys.argv[0]) == '.':
+	sys.path.insert(0, '..')
+	
 from Spanners.Squirrel import Squirrel
 
 args = Argue()

@@ -10,6 +10,27 @@ from Baubles.Logger import Logger
 logger = Logger()
 logger.setLevel(logging.INFO)
 
+others = [
+	'boto3.resources.action',
+	'boto3.resources.factory',
+	'botocore.auth',
+	'botocore.client',
+	'botocore.configprovider',
+	'botocore.credentials',
+	'botocore.endpoint',
+	'botocore.hooks',
+	'botocore.httpsession',
+	'botocore.loaders',
+	'botocore.loaders',
+	'botocore.parsers',
+	'botocore.region',
+	'botocore.regions',
+	'botocore.retryhandler',
+	'botocore.utils',
+]
+
+for other in others:
+	logging.getLogger(other).setLevel(logging.WARNING)
 
 # todo: https://stackoverflow.com/questions/22894211/how-to-resume-file-download-in-python
 

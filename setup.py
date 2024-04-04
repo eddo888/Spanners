@@ -8,7 +8,7 @@ pwd = path.abspath(path.dirname(__file__))
 with codecs.open(path.join(pwd, 'README.md'), 'r', encoding='utf8') as input:
     long_description = input.read()
 
-version='1.17'
+version='1.18'
 	
 setup(
 	name='Spanners',
@@ -36,6 +36,7 @@ setup(
 	scripts=[
 		'bin/squirrel.py',
 		'bin/treeify.py',
+		'bin/dig.py',
 		'Spanners/GoogleMaps.py',
 		'Spanners/Treeify.py',
 	],

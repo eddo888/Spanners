@@ -8,8 +8,9 @@ simple commandline wrapper around credstash
 
 display items in an ascii tree format
 
-## GoogleMaps.py
+## dig.py
 
-query the google maps api from the command line
+simple tool to normalise a spreadsheet into an outline
+also convert excel to markdown
 
 

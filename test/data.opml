@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF8"?>
+<opml version="1.0">
+	<head>
+		<title>../test/data.xlsx</title>
+		<expansionState>0</expansionState>
+	</head>
+	<body>
+		<outline text="1">
+			<outline text="2">
+				<outline text="4"></outline>
+				<outline text="5"></outline>
+			</outline>
+			<outline text="3">
+				<outline text="6"></outline>
+				<outline text="7"></outline>
+			</outline>
+		</outline>
+	</body>
+</opml>

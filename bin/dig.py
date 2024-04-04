@@ -5,7 +5,7 @@
 import os, re, sys, xmltodict, pandas
 from collections import deque, OrderedDict
 
-sys.path.insert(0,'..')
+#sys.path.insert(0,'..')
 
 from Argumental.Argue import Argue
 from Spanners.Digger import Digger

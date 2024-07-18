@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE simplemind-mindmaps>
+<simplemind-mindmaps generator="SimpleMindWin32" gen-version="2.3.0" doc-version="3">
+<mindmap>
+<meta>
+<guid/>
+<title text="1"/>
+<style key="system.bright-palette"/>
+<auto-numbering style="disabled"/>
+<scrollstate zoom="100"/>
+<selection type="node" id="0"/>
+<main-centraltheme id="0"/>
+</meta>
+<topics>
+<topic id="0" parent="-1" x="0.00" y="-43.06" palette="1" colorinfo="1" text="1" textfmt="plain">
+<layout mode="strict-horizontal" direction="auto" flow="default"/>
+</topic>
+<topic id="1" parent="0" x="115.84" y="-43.06" palette="2" colorinfo="2" text="2" textfmt="plain"/>
+<topic id="2" parent="1" x="223.40" y="-66.84" text="4" textfmt="plain"/>
+<topic id="3" parent="1" x="223.40" y="-19.28" text="5" textfmt="plain"/>
+<topic id="4" parent="0" x="-115.84" y="-43.06" palette="3" colorinfo="3" text="3" textfmt="plain"/>
+<topic id="5" parent="4" x="-223.40" y="-66.84" text="6" textfmt="plain"/>
+<topic id="6" parent="4" x="-223.40" y="-19.28" text="7" textfmt="plain"/>
+</topics>
+<relations/>
+</mindmap>
+</simplemind-mindmaps>

@@ -8,7 +8,7 @@ from Argumental.Argue import Argue
 
 if os.path.dirname(sys.argv[0]) == '.':
 	sys.path.insert(0, '..')
-	
+
 from Spanners.Squirrel import Squirrel
 
 args = Argue()
@@ -16,7 +16,7 @@ args = Argue()
 
 @args.command(single=True)
 class SquirrelCommand(Squirrel):
-	
+
 	@args.attribute(short='v', flag=True)
 	def verbose(self): return False
 
@@ -27,34 +27,34 @@ class SquirrelCommand(Squirrel):
 	@args.operation
 	def get(self, name):
 		'''
-        get a KMS key
+		get a KMS key
 
-        '''
+		'''
 		return super().get(name)  #.rstrip('\r').rstrip('\n')
 
 	@args.operation
 	@args.parameter(name='replace', short='r', flag=True)
 	def put(self, name, value, replace=False):
 		'''
-        put a KMS name,value key
+		put a KMS name,value key
 
-        '''
+		'''
 		if replace: super().delete(name)
 		return super().put(name, value)
 
 	@args.operation
 	def delete(self, name):
 		'''
-        delete a KMS name
-        '''
+		delete a KMS name
+		'''
 		return super().delete(name)
 
 	@args.operation
 	def list(self):
 		'''
-        list the KMS names
+		list the KMS names
 
-        '''
+		'''
 		return list(super().list())
 
 

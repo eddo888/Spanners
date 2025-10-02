@@ -17,7 +17,7 @@ class Normaliser:
 	'''
 	Tool to convert spreadsheets into outlines
 
-	| A   | B     | C     |
+	| A   | B	 | C	 |
 	|:----|:------|:------|
 	| one | two   | four  |
 	| one | two   | five  |
@@ -25,7 +25,7 @@ class Normaliser:
 	| one | three | seven |
 
 	'''
-	
+
 	@args.operation
 	@args.parameter(name='file', help='the excel file to normalise')
 	def normalise(self, file):
@@ -62,5 +62,5 @@ class Normaliser:
 		df = pandas.read_excel(file)
 		df.to_markdown(md, index=False)
 
-		
+
 if __name__ == '__main__': args.execute()

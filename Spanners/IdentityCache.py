@@ -31,7 +31,7 @@ class IdentityCache(object):
 	#_____________________________________________
 	def has(self,key):
 		return key in self.cache.keys()
-	
+
 
 	#_____________________________________________
 	def get(self, key):
@@ -39,15 +39,15 @@ class IdentityCache(object):
 			id = '%s'%self.hasher(key)
 			self.cache[key] = id
 		return self.cache[key]
-		
-		
+
+
 def main():
 	cache = IdentityCache()
 	now = arrow.now()
 	url = 'https://docs.python.org/3/library/hashlib.html' #?_=%s'%now
 	id = cache.get(url)
-	
+
 	print(id)
 
-		
+
 if __name__ == '__main__': main()

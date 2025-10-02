@@ -19,30 +19,30 @@ args = Argue()
 
 @args.command(single=True)
 class Treeify(object):
-	
+
 	@args.property(short='c', flag=True, help='output in colour')
 	def colour(self): return False
-	
-	
+
+
 	@args.property(short='a', flag=True, help='ascii instead of boxes')
 	def ascii(self): return False
-	
-	
+
+
 	_oneof = OD([(x, 'input as %s' % x) for x in ['json', 'xml', 'yaml']])
-	
-	
+
+
 	@args.property(oneof=_oneof, short=True, flag=True, default=list(_oneof.keys())[0])
 	def format(self): return
-	
-	
+
+
 	def __init__(self, colour=False, ascii=False):
 		if colour: self.colour = True
 		if ascii: self.ascii = True
 		self.fundamentals = [str, str, int, float, bool]
 		self.collections = [list, dict, OD]
 		self.colours = Colours(colour=self.colour)
-	
-	
+
+
 	def treeFix(self, node):
 		if not node:
 			return dict()
@@ -71,8 +71,8 @@ class Treeify(object):
 						parts = ['<'] + parts + ['>']
 					node[''.join(parts)] = value
 		return node
-	
-	
+
+
 	def process(self, input, output=sys.stdout):
 		if type(input) in self.collections:
 			o = input
@@ -90,13 +90,13 @@ class Treeify(object):
 		else:
 			tr = LeftAligned(draw=BoxStyle(
 				label_space=0,
-				gfx=BOX_LIGHT, 
+				gfx=BOX_LIGHT,
 				horiz_len=1
 			))
-	
+
 		output.write(tr(self.treeFix(o)))
-	
-	
+
+
 	@args.operation
 	@args.parameter(name='files', short='f', nargs='*', metavar='file')
 	@args.parameter(name='output', short='o')
@@ -113,13 +113,13 @@ class Treeify(object):
 		if output:
 			_output.close()
 		return
-	
-	
+
+
 	@args.operation
 	def test(self):
-	
+
 		h = '\n' + '_' * 47
-	
+
 		j = {
 			'one': {
 				'one_one': {
@@ -135,29 +135,29 @@ class Treeify(object):
 				}
 			}
 		}
-		
+
 		print(h)
 		prettyPrintLn(j)
 		print(h)
-	
-		f = '../test/treeify.json' 
+
+		f = '../test/treeify.json'
 		with open(f,'w') as output:
 			json.dump(j, output)
 		self.bark([f])
 		print(h)
-		
+
 		#self.ascii = True
 		self.colour = True
 		self.process(StringIO(json.dumps(j)), sys.stdout)
 		print(h)
-	
+
 		x = xmltodict.unparse(j)
 		doParse(StringIO(str(x)), sys.stdout, colour=True)
 		print(h)
 		self.format = 'xml'
 		self.process(StringIO(str(x)), sys.stdout)
 		print(h)
-	
+
 		sio = StringIO()
 		prettyPrintLn(j, output=sio, style=Style.YAML, colour=False)
 		y = sio.getvalue()
@@ -170,10 +170,10 @@ class Treeify(object):
 		print(h)
 		self.format = 'yaml'
 		self.process(StringIO(y), sys.stdout)
-	
+
 		return
-	
-	
+
+
 if __name__ == '__main__': args.execute()
 
 

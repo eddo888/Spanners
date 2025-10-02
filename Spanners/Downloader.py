@@ -39,24 +39,24 @@ class Downloader(object):
 	'''
 	cached download manager
 	'''
-	
+
 	def __init__(self, cacheDir='.cache', fresh=False, resumable=False):
 		#urllib3.disable_warnings()
 		self.cacheDir = cacheDir
 		self.fresh = fresh
 		self.resumable = resumable
 		logger.debug('cacheDir='+self.cacheDir)
-		
+
 
 	def download(self, url, file=None, username=None, password=None):
 		'''
 		read from disk before downloading
 		'''
 		logger.debug('url='+url)
-		
+
 		if not file:
 			parts = urlparse(url)
-			
+
 			query = ''
 			if len(parts.query):
 				logger.debug('query=%s'%parts.query)
@@ -68,7 +68,7 @@ class Downloader(object):
 			paths = parts.path.split('/')
 			if '.' not in paths[-1]:
 				paths.append('.html')
-				
+
 			file = '%s/%s%s%s'%(
 				self.cacheDir,
 				parts.netloc,
@@ -77,7 +77,7 @@ class Downloader(object):
 			)
 
 		logger.debug('file='+file)
-	
+
 		dirName = os.path.dirname(file)
 		if dirName and not os.path.isdir(dirName):
 			os.makedirs(dirName)
@@ -89,7 +89,7 @@ class Downloader(object):
 			stat = os.stat(file)
 			resume_byte_pos=stat.st_size #+1 ?
 			logger.info('resume_byte_pos=%d'%resume_byte_pos)
-			
+
 		if self.fresh or self.resumable or not os.path.isfile(file):
 			logger.info('to cache '+file)
 			if username and password:
@@ -110,10 +110,10 @@ class Downloader(object):
 
 		else:
 			logger.info('from cache '+file)
-		
+
 		with open(file, 'rb') as input:
 			data = io.BytesIO(input.read())
-			
+
 		return data.getvalue()
 
 
@@ -128,7 +128,7 @@ def main():
 			html = downloader.download(sys.argv[1])
 
 
-		
+
 #_____________________________________________________________________________
 if __name__ == '__main__': main()
 

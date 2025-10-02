@@ -7,7 +7,7 @@ class Digger:
 	'''
 	utility to recurse down into a parsed dataframe
 	'''
-	
+
 	def __init__(self, dq=None, file=None, stack=None):
 		'''
 		class object used to create isolation between levels
@@ -32,7 +32,7 @@ class Digger:
 		else:
 			self.dq = dq.copy()
 			self.stack = stack
-		
+
 	def pushd(self, value):
 		self.putd(value)
 		self.stack.append(
@@ -44,7 +44,7 @@ class Digger:
 			self.stack[-1]['outline'] = []
 		self.stack[-1]['outline'].append({
 			'@text': value,
-		})				
+		})
 
 	def popd(self):
 		self.stack.pop()
@@ -53,7 +53,7 @@ class Digger:
 		columns = deque(self.dq.columns)
 		if len(columns) == 0: return
 		column = columns.popleft()
-		
+
 		for value in self.dq[column].unique():
 			print(f'{indent}{value}')
 
@@ -69,4 +69,4 @@ class Digger:
 			print(f'\n{file}')
 			xmltodict.unparse(self.opml, output, encoding='UTF8', pretty=True)
 
-			
+

@@ -11,8 +11,8 @@ with codecs.open(path.join(pwd, 'README.md'), 'r', encoding='utf8') as input:
 version='1.24'
 
 setup(
-	name='Spanners',
-	version=version,
+	Name='Spanners',
+	Version=version,
 	license='MIT',
     long_description=long_description,
 	long_description_content_type="text/markdown",

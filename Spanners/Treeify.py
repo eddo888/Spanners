@@ -82,7 +82,7 @@ class Treeify(object):
 			if self.format == 'xml':
 				o = xmltodict.parse(input)
 			elif self.format == 'yaml':
-				o = yaml.load(input)
+				o = yaml.safe_load(input)
 			else: # == 'json'
 				o = json.loads(input)
 		if self.ascii:
@@ -135,6 +135,8 @@ class Treeify(object):
 				}
 			}
 		}
+
+		j['one']['two'] = list(set(['x', 1, True]))
 
 		print(h)
 		prettyPrintLn(j)

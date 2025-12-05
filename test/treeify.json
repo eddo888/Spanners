@@ -1,1 +1,1 @@
-{"one": {"one_one": {"one_one": [{"#text": "_1_1_1"}, {"#text": "_1_1_2"}]}, "one_two": {"@attr": "_1_2", "#text": "_1_2_1"}}}
+{"one": {"one_one": {"one_one": [{"#text": "_1_1_1"}, {"#text": "_1_1_2"}]}, "one_two": {"@attr": "_1_2", "#text": "_1_2_1"}, "two": [1, "x"]}}

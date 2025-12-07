@@ -23,17 +23,13 @@ class Treeify(object):
 	@args.property(short='c', flag=True, help='output in colour')
 	def colour(self): return False
 
-
 	@args.property(short='a', flag=True, help='ascii instead of boxes')
 	def ascii(self): return False
 
-
 	_oneof = OD([(x, 'input as %s' % x) for x in ['json', 'xml', 'yaml']])
-
 
 	@args.property(oneof=_oneof, short=True, flag=True, default=list(_oneof.keys())[0])
 	def format(self): return
-
 
 	def __init__(self, colour=False, ascii=False):
 		if colour: self.colour = True
@@ -41,7 +37,6 @@ class Treeify(object):
 		self.fundamentals = [str, str, int, float, bool]
 		self.collections = [list, dict, OD]
 		self.colours = Colours(colour=self.colour)
-
 
 	def treeFix(self, node):
 		if not node:
@@ -72,7 +67,6 @@ class Treeify(object):
 					node[''.join(parts)] = value
 		return node
 
-
 	def process(self, input, output=sys.stdout):
 		if type(input) in self.collections:
 			o = input
@@ -96,7 +90,6 @@ class Treeify(object):
 
 		output.write(tr(self.treeFix(o)))
 
-
 	@args.operation
 	@args.parameter(name='files', short='f', nargs='*', metavar='file')
 	@args.parameter(name='output', short='o')
@@ -113,7 +106,6 @@ class Treeify(object):
 		if output:
 			_output.close()
 		return
-
 
 	@args.operation
 	def test(self):
@@ -174,7 +166,6 @@ class Treeify(object):
 		self.process(StringIO(y), sys.stdout)
 
 		return
-
 
 if __name__ == '__main__': args.execute()
 
